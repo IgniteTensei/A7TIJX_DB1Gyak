@@ -1,0 +1,17 @@
+- egy könyvet több hallgató is használ
+- egy hallgató több könyvet is használ
+- egy könyv egy könyvtárhoz tartozik
+- egy könyvnek több szerzõje is lehet
+- egy szerzõnek több könyve is lehet
+- egy campuson több könyvtár is lehet
+- egy szerzõnek több email címe is lehet
+- egy szerzõnek egy neve van
+- egy szerzõt a szerzõ kódja azonosítja 
+- egy könyvet a ISBN száma azonosítja
+- egy könyvnek egy címe van
+- egy könyvtárat a könyvtár kódja azonosítja
+- egy könyvtárnak egy neve van
+- egy campust az azonosítója azonosítja
+- egy campusnak egy címe van
+- egy hallgatót a neptun kódja azonosít
+- egy hallgatónak egy neve van
