@@ -1,0 +1,21 @@
+INSERT INTO `gyarto`(`adoszam`, `nev`, `telephely`, `irsz`, `varos`, `utca`)  VALUES (1234567891,"gyarto1","telephely1", 6666, "Dunaböszörmény", "Nagy Márton utca");
+INSERT INTO `gyarto`(`adoszam`, `nev`, `telephely`, `irsz`, `varos`, `utca`)  VALUES (1098765432,"gyarto2","telephely2", 1245, "Rinyaújnép", "Pék utca");
+INSERT INTO `gyarto`(`adoszam`, `nev`, `telephely`, `irsz`, `varos`, `utca`)  VALUES (2068101213,"gyarto3", NULL, NULL, NULL, NULL);
+INSERT INTO `gyarto`(`adoszam`, `nev`, `telephely`, `irsz`, `varos`, `utca`)  VALUES (1357911131,"gyarto4", NULL, NULL, NULL, NULL);
+INSERT INTO `gyarto`(`adoszam`, `nev`, `telephely`, `irsz`, `varos`, `utca`)  VALUES (2147483647,"gyarto5","telephely3", 6354, "Makkoshotyka", "Dió utca");
+
+INSERT INTO `termek`(`tkod`, `nev`, `ear`, `gyarto`) VALUES (1, "kenyer", 400, 1098765432);
+INSERT INTO `termek`(`tkod`, `nev`, `ear`, `gyarto`) VALUES (2, "tej", 300, 2068101213);
+INSERT INTO `termek`(`tkod`, `nev`, `ear`, `gyarto`) VALUES (3, "kakaos tej", 350, 1234567891);
+INSERT INTO `termek`(`tkod`, `nev`, `ear`, `gyarto`) VALUES (4, "viz", 80, 2147483647);
+INSERT INTO `termek`(`tkod`, `nev`, `ear`, `gyarto`) VALUES (5, "joghurt", 150, 2068101213);
+
+INSERT INTO `alaktresz`(`akod`, `nev`) VALUES (1, "kakao")
+
+INSERT INTO `egysegek`(`aru`, `db`) VALUES (1, 1523);
+INSERT INTO `egysegek`(`aru`, `db`) VALUES (2, 5255);
+INSERT INTO `egysegek`(`aru`, `db`) VALUES (3, 775);
+INSERT INTO `egysegek`(`aru`, `db`) VALUES (4, 1664);
+INSERT INTO `egysegek`(`aru`, `db`) VALUES (5, 1463);
+
+INSERT INTO `komponens`(`termek`, `alkatresz`) VALUES (3,1)
