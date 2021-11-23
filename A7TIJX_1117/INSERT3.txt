@@ -1,0 +1,12 @@
+INSERT INTO `gyarto`(`adoszam`, `nev`, `telephely`) VALUES (1234567891,"gyarto1","telephely1");
+INSERT INTO `gyarto`(`adoszam`, `nev`, `telephely`) VALUES (1098765432,"gyarto2","telephely2");
+INSERT INTO `gyarto`(`adoszam`, `nev`, `telephely`) VALUES (2068101213,"gyarto3", NULL);
+INSERT INTO `gyarto`(`adoszam`, `nev`, `telephely`) VALUES (1357911131,"gyarto4", NULL);
+INSERT INTO `gyarto`(`adoszam`, `nev`, `telephely`) VALUES (2147483647,"gyarto5","telephely3");
+
+INSERT INTO `termek`(`tkod`, `nev`, `ear`, `gyarto`) VALUES (1, "kenyer", 400, 1098765432);
+INSERT INTO `termek`(`tkod`, `nev`, `ear`, `gyarto`) VALUES (2, "tej", 300, 2068101213);
+INSERT INTO `termek`(`tkod`, `nev`, `ear`, `gyarto`) VALUES (3, "kakaos tej", 350, 1234567891);
+INSERT INTO `termek`(`tkod`, `nev`, `ear`, `gyarto`) VALUES (4, "viz", 80, 2147483647);
+INSERT INTO `termek`(`tkod`, `nev`, `ear`, `gyarto`) VALUES (5, "joghurt", 150, 2068101213);
+
