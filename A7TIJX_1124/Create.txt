@@ -1,0 +1,13 @@
+CREATE TABLE `oktato` (`nkod` varbinary(7) NOT NULL, `tanszek` varbinary(100) NOT NULL, `nev` varbinary(50) NOT NULL);
+
+ALTER TABLE `oktato` ADD PRIMARY KEY (`nkod`);
+
+CREATE TABLE `targy` (kod int(50) NOT NULL, `kredit` int(2) DEFAULT NULL, `megnevezes` varbinary(50) NOT NULL, `nkoktato` varbinary(7) REFERENCES `oktato`);
+
+ALTER TABLE `targy` ADD PRIMARY KEY (`kod`);
+
+CREATE TABLE `hallgato` (`neptkod` varbinary(7) NOT NULL, `nev` varbinary(50) NOT NULL, szuldatum DATE NOT NULL, `kor` int(3) NOT NULL, `tankor` varbinary(20) NOT NULL, `irszam` int(4) NOT NULL, `varos` varbinary(20) NOT NULL, `utca` varbinary(30) NOT NULL, `hszam` int(3) NOT NULL);
+
+ALTER TABLE `hallgato` ADD PRIMARY KEY (`neptkod`);
+
+CREATE TABLE `hallgat` (`felev` int(2) NOT NULL, `vizsgajegy` int(1) DEFAULT NULL, `targykod` int(20) REFERENCES `targy`, `nkhallgato` varbinary(7) REFERENCES `hallgato`);
