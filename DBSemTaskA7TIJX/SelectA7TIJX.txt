@@ -1,0 +1,16 @@
+Kilistázza a 4000 yennél drágább könyveket
+SELECT * FROM book WHERE price > 4000;
+
+Kilistázza a magazinnevet a koroszályt, a megjelenési időközt azoknál a magazinoknál ahol a Shueisha a kiadó
+SELECT magazineName, demographic, serializationTime FROM magazine WHERE mPublisherName = 'Shueisha';
+
+Megszámolja hány Adventure műfajú képregény van
+SELECT COUNT(*) FROM seriesgenre WHERE genre = 'Adventure';
+
+Kilistázza azokat a készítőket akik a Weekly Shounen Jump magazinnál publikltak
+SELECT authorName FROM magazine INNER JOIN series ON magazineName = sMagazineName INNER JOIN author ON sAuthorName = authorName WHERE magazineName = 'Weekly Shounen Jump';
+
+Fujimoto Tatsuki könyveinek neve és száma valamint hogy mennyibe kerülnek
+SELECT bSeriesName, volumeNum, price FROM author INNER JOIN series ON authorName = sAuthorName INNER JOIN book ON seriesName = bSeriesName WHERE authorName = 'Fujimoto Tatsuki';
+
+
