@@ -1,0 +1,14 @@
+CREATE TABLE `publisher` (`publisherName` varbinary(20) NOT NULL PRIMARY KEY, `phoneNumber` int(15) NOT NULL, `city` varbinary(30) NOT NULL, `street` varbinary(50) NOT NULL, `emailAddress` varbinary(50) NOT NULL);
+CREATE TABLE `magazine` (`magazineName` varbinary(50) NOT NULL PRIMARY KEY, `demographic` varbinary(20) NOT NULL, `serializationTime` varbinary(20) NOT NULL, `magazinePrice` int(6) NOT NULL, `mPublisherName` varbinary(20) NOT NULL);
+CREATE TABLE `author` (`authorName` varbinary(30) NOT NULL PRIMARY KEY, `age` int(3) NOT NULL, `gender` varbinary(10) NOT NULL);
+CREATE TABLE `series` (`seriesName` varbinary(100) NOT NULL PRIMARY KEY, `ranking` int(5) NOT NULL, `numOfReaders` int(10) NOT NULL, `sMagazineName` varbinary(50) NOT NULL, `sAuthorName` varbinary(30) NOT NULL);
+CREATE TABLE `book` (`bookID` int(3) NOT NULL PRIMARY KEY, `price` int(6) NOT NULL, `numOfPages` int(4) NOT NULL, `numOfChapters` int(3) NOT NULL, `volumeNum` int(3) NOT NULL, `bSeriesName` varbinary(100) NOT NULL);
+CREATE TABLE `bookstore` (`bookstoreName` varbinary(30) NOT NULL PRIMARY KEY, `city` varbinary(30) NOT NULL, `street` varbinary(30) NOT NULL);
+CREATE TABLE `selling` (`sBookID` int(3) NOT NULL, `sBookstoreName` varbinary(30) NOT NULL, `numOfSells` int(10) NOT NULL);
+CREATE TABLE `seriesgenre` (`genre` varbinary(30) NOT NULL, `gSeriesName` varbinary(100) NOT NULL);
+
+ALTER TABLE `book` ADD FOREIGN KEY (`bSeriesName`) REFERENCES `series` (`seriesName`);
+ALTER TABLE `magazine` ADD FOREIGN KEY (`mPublisherName`) REFERENCES `publisher` (`publisherName`);
+ALTER TABLE `selling` ADD FOREIGN KEY (`sBookstoreName`) REFERENCES `bookstore` (`bookstorename`), ADD FOREIGN KEY (`sBookID`) REFERENCES `book` (`bookID`);
+ALTER TABLE `series` ADD FOREIGN KEY (`sAuthorName`) REFERENCES `author` (`authorName`), ADD FOREIGN KEY (`sMagazineName`) REFERENCES `magazine` (`magazineName`);
+ALTER TABLE `seriesgenre` ADD FOREIGN KEY (`gSeriesName`) REFERENCES `series` (`seriesName`);
