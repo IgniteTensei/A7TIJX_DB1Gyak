@@ -1,11 +1,17 @@
 Kilistázza a 4000 yennél drágább könyveket
 SELECT * FROM book WHERE price > 4000;
 
+Megnézi milyen féle korosztályoknak készülnek a magazinok és megszámolja hány ilyen magazin van
+SELECT demographic, COUNT(*) FROM magazine GROUP BY demographic;
+
 Kilistázza a magazinnevet a koroszályt, a megjelenési időközt azoknál a magazinoknál ahol a Shueisha a kiadó
 SELECT magazineName, demographic, serializationTime FROM magazine WHERE mPublisherName = 'Shueisha';
 
 Megszámolja hány Adventure műfajú képregény van
 SELECT COUNT(*) FROM seriesgenre WHERE genre = 'Adventure';
+
+Megszámolja hány könyve van a könyvesboltokban Urasawa Naokinak
+SELECT authorName, COUNT(*) FROM book INNER JOIN series ON bSeriesName = seriesName WHERE sAuthorName = 'Urasawa Naoki'; 
 
 Kilistázza azokat a készítőket akik a Weekly Shounen Jump magazinnál publikltak
 SELECT authorName FROM magazine INNER JOIN series ON magazineName = sMagazineName INNER JOIN author ON sAuthorName = authorName WHERE magazineName = 'Weekly Shounen Jump';
