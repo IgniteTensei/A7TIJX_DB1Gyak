@@ -1,6 +1,9 @@
 Kilistázza a 4000 yennél drágább könyveket
 SELECT * FROM book WHERE price > 4000;
 
+Kilistázza könyvesboltonként mennyi volt az összeladás
+SELECT bookstoreName, SUM(numOfSells) FROM selling INNER JOIN bookstore ON bookstoreName = sBookStoreName GROUP BY bookstoreName;
+
 Megnézi milyen féle korosztályoknak készülnek a magazinok és megszámolja hány ilyen magazin van
 SELECT demographic, COUNT(*) FROM magazine GROUP BY demographic;
 
@@ -11,12 +14,22 @@ Megszámolja hány Adventure műfajú képregény van
 SELECT COUNT(*) FROM seriesgenre WHERE genre = 'Adventure';
 
 Megszámolja hány könyve van a könyvesboltokban Urasawa Naokinak
-SELECT authorName, COUNT(*) FROM book INNER JOIN series ON bSeriesName = seriesName WHERE sAuthorName = 'Urasawa Naoki'; 
+SELECT sAuthorName, COUNT(*) FROM book INNER JOIN series ON bSeriesName = seriesName WHERE sAuthorName = 'Urasawa Naoki'; 
 
 Kilistázza azokat a készítőket akik a Weekly Shounen Jump magazinnál publikltak
 SELECT authorName FROM magazine INNER JOIN series ON magazineName = sMagazineName INNER JOIN author ON sAuthorName = authorName WHERE magazineName = 'Weekly Shounen Jump';
 
 Fujimoto Tatsuki könyveinek neve és száma valamint hogy mennyibe kerülnek
 SELECT bSeriesName, volumeNum, price FROM author INNER JOIN series ON authorName = sAuthorName INNER JOIN book ON seriesName = bSeriesName WHERE authorName = 'Fujimoto Tatsuki';
+
+Összeszámolja mennyi volt a bevétel a könyvesboltokban eladott Asano Inio kötetekből
+SELECT authorName, SUM(numOfSells*price) FROM author INNER JOIN series ON authorName = sAuthorName INNER JOIN book ON seriesName = bSeriesName INNER JOIN selling ON bookID = sBookID WHERE authorName = 'Asano Inio';
+
+Kilistázza hogy mely szerzőknek van összességében 350000 olvasónál több
+CREATE VIEW maxview AS SELECT authorName, SUM(numOfReaders) maxreaders FROM series INNER JOIN author ON sAuthorName = authorName GROUP BY authorName;
+SELECT maxview.authorName, CASE WHEN maxreaders > 350000 THEN 'nagyon népszerű' ELSE 'nem annyira népszerű' END értékelés FROM maxview;
+
+
+
 
 
