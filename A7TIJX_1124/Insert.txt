@@ -4,17 +4,17 @@ INSERT INTO `oktato`(`nkod`, `tanszek`, `nev`) VALUES ('56GFSI9','Matematika Tan
 INSERT INTO `oktato`(`nkod`, `tanszek`, `nev`) VALUES ('IG76BNM','Informatika Tanszék','K. Erzsébet');
 INSERT INTO `oktato`(`nkod`, `tanszek`, `nev`) VALUES ('P345CV1','Biológia Tanszék','J. Ernő');
 
-INSERT INTO `targy`(`kod`, `kredit`, `megnevezes`, `nkoktato`) VALUES (1, 5,'Matematika','56GFSI9');
-INSERT INTO `targy`(`kod`, `kredit`, `megnevezes`, `nkoktato`) VALUES (2, 4,'Biológia','P345CV1');
-INSERT INTO `targy`(`kod`, `kredit`, `megnevezes`, `nkoktato`) VALUES (3, 5,'Adatbázis','D6D123F');
-INSERT INTO `targy`(`kod`, `kredit`, `megnevezes`, `nkoktato`) VALUES (4, 3,'Fizika','H754JK4');
-INSERT INTO `targy`(`kod`, `kredit`, `megnevezes`, `nkoktato`) VALUES (5, 5,'Programozás','IG76BNM');
-
 INSERT INTO `hallgato`(`neptkod`, `nev`, `szuldatum`, `kor`, `tankor`, `irszam`, `varos`, `utca`, `hszam`) VALUES ('HW68O8D','D. Marcell','2000-04-28', 21,'G1', 4725,'C1','S1', 1);
 INSERT INTO `hallgato`(`neptkod`, `nev`, `szuldatum`, `kor`, `tankor`, `irszam`, `varos`, `utca`, `hszam`) VALUES ('PSDG643','H. Gergő','2001-08-19', 20,'G2', 4725,'C1','S2', 5);
 INSERT INTO `hallgato`(`neptkod`, `nev`, `szuldatum`, `kor`, `tankor`, `irszam`, `varos`, `utca`, `hszam`) VALUES ('DP26CFS','M. Márton','2000-03-16', 21,'G1', 4725,'C1','S3', 19);
 INSERT INTO `hallgato`(`neptkod`, `nev`, `szuldatum`, `kor`, `tankor`, `irszam`, `varos`, `utca`, `hszam`) VALUES ('HQIC7DC','F. Ádám','2002-12-12', 18,'H1', 4725,'C2','S4', 13);
 INSERT INTO `hallgato`(`neptkod`, `nev`, `szuldatum`, `kor`, `tankor`, `irszam`, `varos`, `utca`, `hszam`) VALUES ('8LKX323','R. Júlia','2000-07-23', 21,'G3', 4725,'C3','S5', 26);
+
+INSERT INTO `targy`(`kod`, `kredit`, `megnevezes`, `nkoktato`) VALUES (1, 5,'Matematika','56GFSI9');
+INSERT INTO `targy`(`kod`, `kredit`, `megnevezes`, `nkoktato`) VALUES (2, 4,'Biológia','P345CV1');
+INSERT INTO `targy`(`kod`, `kredit`, `megnevezes`, `nkoktato`) VALUES (3, 5,'Adatbázis','D6D123F');
+INSERT INTO `targy`(`kod`, `kredit`, `megnevezes`, `nkoktato`) VALUES (4, 3,'Fizika','H754JK4');
+INSERT INTO `targy`(`kod`, `kredit`, `megnevezes`, `nkoktato`) VALUES (5, 5,'Programozás','IG76BNM');
 
 INSERT INTO `hallgat`(`felev`, `vizsgajegy`, `targykod`, `nkhallgato`) VALUES ('2019/2020', 2, 1,'P345CV1');
 INSERT INTO `hallgat`(`felev`, `vizsgajegy`, `targykod`, `nkhallgato`) VALUES ('2019/2020', 5, 5,'56GFSI9');

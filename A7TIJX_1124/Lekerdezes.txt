@@ -1,0 +1,11 @@
+SELECT oktato.nev FROM oktato;
+
+SELECT oktato.nev, targy.megnevezes FROM oktato INNER JOIN targy ON oktato.nkod = targy.nkoktato;
+
+SELECT oktato.nev, targy.megnevezes FROM oktato INNER JOIN targy ON oktato.nkod = targy.nkoktato WHERE oktato.tanszek = 'Informatika Tanszék';
+
+SELECT AVG(targy.kredit) FROM targy;
+
+SELECT COUNT(oktato.nev) FROM oktato WHERE oktato.tanszek = 'Informatika Tanszék';
+
+SELECT targy.megnevezes, MAX(targy.kredit) FROM targy;
