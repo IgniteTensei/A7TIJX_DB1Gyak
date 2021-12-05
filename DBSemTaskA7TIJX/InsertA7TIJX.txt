@@ -207,6 +207,7 @@ INSERT INTO `selling`(`sBookID`, `sBookstoreName`, `numOfSells`) VALUES (55,'Tsu
 INSERT INTO `selling`(`sBookID`, `sBookstoreName`, `numOfSells`) VALUES (60,'Tsutaya Books',978);
 INSERT INTO `selling`(`sBookID`, `sBookstoreName`, `numOfSells`) VALUES (64,'Tsutaya Books',657);
 
-
-
+INSERT INTO `president`(`presName`, `presAge`, `presGender`, `pPublisherName`) VALUES ('Horiuchi Marue',70,'Male','Shueisha');
+INSERT INTO `president`(`presName`, `presAge`, `presGender`, `pPublisherName`) VALUES ('Noma Yoshinobu','52','Male','Kodansha');
+INSERT INTO `president`(`presName`, `presAge`, `presGender`, `pPublisherName`) VALUES ('Ouga Masahiro','73','Male','Shogakukan');
 

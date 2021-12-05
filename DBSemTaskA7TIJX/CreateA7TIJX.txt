@@ -6,9 +6,11 @@ CREATE TABLE `book` (`bookID` int(3) NOT NULL PRIMARY KEY, `price` int(6) NOT NU
 CREATE TABLE `bookstore` (`bookstoreName` varbinary(30) NOT NULL PRIMARY KEY, `city` varbinary(30) NOT NULL, `street` varbinary(30) NOT NULL);
 CREATE TABLE `selling` (`sBookID` int(3) NOT NULL, `sBookstoreName` varbinary(30) NOT NULL, `numOfSells` int(10) NOT NULL);
 CREATE TABLE `seriesgenre` (`genre` varbinary(30) NOT NULL, `gSeriesName` varbinary(100) NOT NULL);
+CREATE TABLE `president` (`presName` varbinary(30) NOT NULL PRIMARY KEY, `presAge` int(3) NOT NULL, `presGender` varbinary(10) NOT NULL, `pPublisherName` varbinary(20) NOT NULL);
 
 ALTER TABLE `book` ADD FOREIGN KEY (`bSeriesName`) REFERENCES `series` (`seriesName`);
 ALTER TABLE `magazine` ADD FOREIGN KEY (`mPublisherName`) REFERENCES `publisher` (`publisherName`);
 ALTER TABLE `selling` ADD FOREIGN KEY (`sBookstoreName`) REFERENCES `bookstore` (`bookstorename`), ADD FOREIGN KEY (`sBookID`) REFERENCES `book` (`bookID`);
 ALTER TABLE `series` ADD FOREIGN KEY (`sAuthorName`) REFERENCES `author` (`authorName`), ADD FOREIGN KEY (`sMagazineName`) REFERENCES `magazine` (`magazineName`);
 ALTER TABLE `seriesgenre` ADD FOREIGN KEY (`gSeriesName`) REFERENCES `series` (`seriesName`);
+ALTER TABLE `president` ADD FOREIGN KEY (`pPublisherName`) REFERENCES `publisher` (`publisherName`);

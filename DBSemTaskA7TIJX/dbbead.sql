@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2021. Dec 01. 07:41
+-- Létrehozás ideje: 2021. Dec 05. 15:56
 -- Kiszolgáló verziója: 10.4.21-MariaDB
 -- PHP verzió: 8.0.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `dbbead`
+-- Adatbázis: `bad`
 --
 
 -- --------------------------------------------------------
@@ -186,6 +186,39 @@ INSERT INTO `magazine` (`magazineName`, `demographic`, `serializationTime`, `mag
 (0x5765656b6c792053686f756e656e204a756d70, 0x53686f756e656e, 0x5765656b6c79, 300, 0x5368756569736861),
 (0x5765656b6c792053686f756e656e204d6167617a696e65, 0x53686f756e656e, 0x5765656b6c79, 300, 0x4b6f64616e736861),
 (0x596f756e67204a756d70, 0x5365696e656e, 0x5765656b6c79, 300, 0x5368756569736861);
+
+-- --------------------------------------------------------
+
+--
+-- A nézet helyettes szerkezete `maxview`
+-- (Lásd alább az aktuális nézetet)
+--
+CREATE TABLE `maxview` (
+`authorName` varbinary(30)
+,`maxreaders` decimal(32,0)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `president`
+--
+
+CREATE TABLE `president` (
+  `presName` varbinary(30) NOT NULL,
+  `presAge` int(3) NOT NULL,
+  `presGender` varbinary(10) NOT NULL,
+  `pPublisherName` varbinary(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- A tábla adatainak kiíratása `president`
+--
+
+INSERT INTO `president` (`presName`, `presAge`, `presGender`, `pPublisherName`) VALUES
+(0x486f726975636869204d61727565, 70, 0x4d616c65, 0x5368756569736861),
+(0x4e6f6d6120596f7368696e6f6275, 52, 0x4d616c65, 0x4b6f64616e736861),
+(0x4f756761204d6173616869726f, 73, 0x4d616c65, 0x53686f67616b756b616e);
 
 -- --------------------------------------------------------
 
@@ -374,6 +407,55 @@ INSERT INTO `seriesgenre` (`genre`, `gSeriesName`) VALUES
 (0x53706f727473, 0x536c616d2044756e6b),
 (0x436f6d656479, 0x536c616d2044756e6b);
 
+-- --------------------------------------------------------
+
+--
+-- A nézet helyettes szerkezete `view1`
+-- (Lásd alább az aktuális nézetet)
+--
+CREATE TABLE `view1` (
+`authorName` varbinary(30)
+,`SUM(numOfReaders)` decimal(32,0)
+);
+
+-- --------------------------------------------------------
+
+--
+-- A nézet helyettes szerkezete `view2`
+-- (Lásd alább az aktuális nézetet)
+--
+CREATE TABLE `view2` (
+`authorName` varbinary(30)
+,`reader` decimal(32,0)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Nézet szerkezete `maxview`
+--
+DROP TABLE IF EXISTS `maxview`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `maxview`  AS SELECT `author`.`authorName` AS `authorName`, sum(`series`.`numOfReaders`) AS `maxreaders` FROM (`series` join `author` on(`series`.`sAuthorName` = `author`.`authorName`)) GROUP BY `author`.`authorName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Nézet szerkezete `view1`
+--
+DROP TABLE IF EXISTS `view1`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view1`  AS SELECT `author`.`authorName` AS `authorName`, sum(`series`.`numOfReaders`) AS `SUM(numOfReaders)` FROM (`author` join `series` on(`author`.`authorName` = `series`.`sAuthorName`)) GROUP BY `author`.`authorName` ;
+
+-- --------------------------------------------------------
+
+--
+-- Nézet szerkezete `view2`
+--
+DROP TABLE IF EXISTS `view2`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view2`  AS SELECT `author`.`authorName` AS `authorName`, sum(`series`.`numOfReaders`) AS `reader` FROM (`series` join `author` on(`author`.`authorName` = `series`.`sAuthorName`)) GROUP BY `author`.`authorName` ;
+
 --
 -- Indexek a kiírt táblákhoz
 --
@@ -403,6 +485,13 @@ ALTER TABLE `bookstore`
 ALTER TABLE `magazine`
   ADD PRIMARY KEY (`magazineName`),
   ADD KEY `mPublisherName` (`mPublisherName`);
+
+--
+-- A tábla indexei `president`
+--
+ALTER TABLE `president`
+  ADD PRIMARY KEY (`presName`),
+  ADD KEY `pPublisherName` (`pPublisherName`);
 
 --
 -- A tábla indexei `publisher`
@@ -446,6 +535,12 @@ ALTER TABLE `book`
 --
 ALTER TABLE `magazine`
   ADD CONSTRAINT `magazine_ibfk_1` FOREIGN KEY (`mPublisherName`) REFERENCES `publisher` (`publisherName`);
+
+--
+-- Megkötések a táblához `president`
+--
+ALTER TABLE `president`
+  ADD CONSTRAINT `president_ibfk_1` FOREIGN KEY (`pPublisherName`) REFERENCES `publisher` (`publisherName`);
 
 --
 -- Megkötések a táblához `selling`
